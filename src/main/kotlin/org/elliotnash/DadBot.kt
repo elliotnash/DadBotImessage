@@ -47,7 +47,7 @@ class DadBot(url: String, password: String) : EventListener {
         if (!message.isFromMe) {
             val parts = imRegex.split(message.text, 2)
             if (parts.size > 1) {
-                val name = dotRegex.split(parts[1].trim())[0]
+                val name = parts[1].trim()
                 val content = "Hi ${name}, I'm dad"
                 if (config.dadModeEnabled(message.chat.guid)) {
                     println("Responding: $content")

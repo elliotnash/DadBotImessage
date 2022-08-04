@@ -78,6 +78,12 @@ class DadBot(url: String, password: String) : EventListener {
             return
         }
         val on = state == "on"
+        if (!on) {
+            if (!message.isFromMe) {
+                message.reply("You do not have permission to deactivate dad mode")
+                return
+            }
+        }
         config.setDadMode(message.chat.guid, on)
         message.reply("${if (on) "Enabled" else "Disabled" } dad mode on chat ${message.chat.guid}")
     }
